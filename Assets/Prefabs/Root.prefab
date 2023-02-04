@@ -44,9 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237007870d015462da71cca02d24d76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOrigin: 1
+  parent: {fileID: 0}
   rootPrefab: {fileID: 3443904181631719297}
-  branches: []
+  children: []
+  pointA: {x: 0, y: 0, z: 0}
+  pointB: {x: 0, y: -1, z: 0}
+  isDead: 0
 --- !u!120 &6034205322984988595
 LineRenderer:
   m_ObjectHideFlags: 0
