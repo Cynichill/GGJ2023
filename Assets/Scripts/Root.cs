@@ -8,23 +8,31 @@ class Root : MonoBehaviour
     public Root parent;
     private LineRenderer lines;
     public GameObject rootPrefab;
-    private float mutationRate = 0.4f;
+    private float mutationRate = 0.5f;
     public List<Root> children = new List<Root>();
     public List<Vector3> positions = new List<Vector3>();
     public MeshCollider collider;
     public bool isDead = false;
     private int count = 0;
-    private Vector3 goal = new Vector3(5, -4, 0);
+    private Vector3[] goals = {new Vector3(5, -8, 0), new Vector3(-5, -8, 0), new Vector3(5, -4, 0), new Vector3(-5, -4, 0)};
+    public Vector3 goal;
     private float focus = 0.4f;
     private Mesh mesh;
     public EdgeCollider2D edgeCollider;
+    private float step = 1.5f;
+    private float time = 0f;
 
     void Start()
     {
         lines = GetComponent<LineRenderer>();
         lines.material.SetColor("_Color", new Color(225/255f,228/255f,196/255f, 0.1f));
-        positions.Add(transform.position);
-        positions.Add(transform.position + new Vector3(0.1f, 0 , 0));
+        goal = goals[Random.Range(0,3)];
+
+        if(positions.Count == 0) {
+            positions.Add(transform.localPosition);
+            positions.Add(transform.localPosition + new Vector3(0.1f, 0 , 0));
+        }
+        
         Draw();
         if(Random.Range(0.0f, 1.0f) > 10.0f){
             mutationRate = 1.1f;
@@ -40,33 +48,35 @@ class Root : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isDead && Random.Range(0.0f, 1.0f) > 0.5f){
+        time += Time.deltaTime;
+
+        if(time >= step){
+            Debug.Log(time);
+            time = 0f;
+            if(!isDead){
             Extend();
-        }
-        if(count < 1){
-            //DoesBranch();
+            }
+            if(count < 3){
+                DoesBranch();
+            }
         }
     }
 
     void SetRoot(Vector3 start, Vector3 end) {
+        positions.Add(start);
+        positions.Add(end);
     }
 
     void Extend() {
         if(Vector3.Distance(positions.Last(), goal) > 0.5f){
             Vector3 newPoint = new Vector3(0,0,0);
-
-            int attempts = 0;
             bool create = false;
 
-            while(attempts < 3 && !create){
+            while(!create){
                 newPoint = positions.Last() + GetNewPosition();
-                //Debug.Log("Testing Path '" + newPoint + "'...");
-
                 if(IsClearPath(newPoint)){
                     create = true;
-                    //Debug.Log("Clear Path: " + newPoint);
                 }
-                attempts++;
             }
 
             if(create){
@@ -81,21 +91,46 @@ class Root : MonoBehaviour
         }
     }
 
-    void GenerateMeshCollider() {
-        collider = GetComponent<MeshCollider>();
+    void createChild() {
+        Debug.Log("Creating Child at " + positions.Last());
+        GameObject newRootRef = Instantiate(rootPrefab, transform.position, transform.rotation);
+        Root newRoot = newRootRef.GetComponent<Root>();
+        newRoot.SetRoot(positions.Last(), positions.Last()+ new Vector3(0,0.01f,0));
 
-        if(collider == null) {
-            collider.gameObject.AddComponent<MeshCollider>();
+        bool create = false;
+
+        Vector3 newPoint = new Vector3(0,0,0);
+
+        while(!create){
+            newPoint = positions.Last() + GetNewPosition();
+
+            if(IsClearPath(newPoint)){
+                create = true;
+                Debug.Log("Collision Detected: " + newPoint);
+            }
         }
 
-        mesh = new Mesh();
-        lines.BakeMesh(mesh, Camera.main, false);
-        collider.sharedMesh = mesh;
-
-        foreach(var i in mesh.normals) {
-            Debug.Log(i);
+        if(create) {
+            newRoot.SetRoot(positions.Last(), newPoint);
+            children.Add(newRoot);
         }
     }
+
+    // void GenerateMeshCollider() {
+    //     collider = GetComponent<MeshCollider>();
+
+    //     if(collider == null) {
+    //         collider.gameObject.AddComponent<MeshCollider>();
+    //     }
+
+    //     mesh = new Mesh();
+    //     lines.BakeMesh(mesh, Camera.main, false);
+    //     collider.sharedMesh = mesh;
+
+    //     foreach(var i in mesh.normals) {
+    //         Debug.Log(i);
+    //     }
+    // }
 
     void SetEdgeCollider() {
         edgeCollider = GetComponent<EdgeCollider2D>();
@@ -115,7 +150,7 @@ class Root : MonoBehaviour
         } else if (Random.Range(-1.0f, 1.0f) > mutationRate) {
             count++;
             createChild();
-            DoesBranch();
+            //DoesBranch();
         }
     }
 
@@ -137,11 +172,11 @@ class Root : MonoBehaviour
     }
     
     bool IsClearPath(Vector3 newPoint) {
-        Vector3 pointA = positions.Last() + 0.1f * (newPoint-positions.Last());// + newPoint * 0.1f;
+        Vector3 pointA = positions.Last() + 0.01f * (newPoint-positions.Last());// + newPoint * 0.1f;
         Debug.Log("TESTING " + newPoint);
         Debug.Log(pointA + " => " + newPoint + " = " + Vector3.Distance(pointA, newPoint));
         Debug.Log(mesh);
-        Debug.DrawRay(pointA, newPoint-pointA, Color.green, 10000.0f, false);
+        //Debug.DrawRay(pointA, newPoint-pointA, Color.green, 10000.0f, false);
         if (Physics2D.Linecast(newPoint, pointA)){
             Debug.Log(":::::Collision Detected::::: ");
             Debug.Log(":::::Collision Detected::::: ");
@@ -152,29 +187,5 @@ class Root : MonoBehaviour
         }
     }
 
-    void createChild() {
-        GameObject newRootRef = Instantiate(rootPrefab, positions.Last(), rootPrefab.transform.rotation);
-        Root newRoot = newRootRef.GetComponent<Root>();
-
-        int attempts = 0;
-        bool create = false;
-
-        Vector3 newPoint = new Vector3(0,0,0);
-
-        while(attempts < 3 && !create){
-            newPoint = positions.Last() + GetNewPosition();
-
-            if(IsClearPath(newPoint)){
-                create = true;
-                Debug.Log("Collision Detected: " + newPoint);
-            }
-            attempts++;
-        }
-
-        if(create) {
-            Debug.Log("New Child");
-            newRoot.SetRoot(positions.Last(), newPoint);
-            children.Add(newRoot);
-        }
-    }
+    
 }
