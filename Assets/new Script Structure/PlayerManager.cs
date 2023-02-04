@@ -46,6 +46,8 @@ public class PlayerManager : MonoBehaviour
     //Publicly accessible resource list
     public Resources playerResources;
 
+    public GameObject playerObj;
+
     //private inputsystem reference
     private PlayerControl controls;
     private void Awake()
@@ -54,8 +56,15 @@ public class PlayerManager : MonoBehaviour
         controls.Player.Interact.performed += ctx => playerState.ActionPrimary();
         controls.Player.Move.performed += ctx => playerState.Move(ctx.ReadValue<Vector2>());
 
+        //Setup player transform reference
+        if (playerObj == null)
+        {
+            playerObj = GameObject.FindGameObjectWithTag("Player");
+        }
 
-        playerState = new PlayerSetupState();
+
+        playerState = new PlayerAttackState();
+        playerState.Initiate(this, playerObj); //Initialise playerstate
     }
 
     private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -120,7 +129,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerState.SwitchFrom();
         playerState = newState;
-        playerState.Initiate(this);
+        playerState.Initiate(this, playerObj);
     }
 
     //private
