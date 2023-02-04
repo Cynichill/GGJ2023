@@ -8,17 +8,18 @@ class Root : MonoBehaviour
     public Root parent;
     private LineRenderer lines;
     public GameObject rootPrefab;
-    private float mutationRate = 0.8f;
+    private float mutationRate = 0.4f;
     public List<Root> children = new List<Root>();
     public List<Vector3> positions = new List<Vector3>();
     public bool isDead = false;
     private int count = 0;
     private Vector3 goal = new Vector3(5, -4, 0);
-    private float focus = 0.2f;
+    private float focus = 0.4f;
 
     void Start()
     {
         lines = GetComponent<LineRenderer>();
+        lines.material.SetColor("_Color", new Color(225/255f,228/255f,196/255f, 1));
         positions.Add(transform.position);
         positions.Add(transform.position);
         Draw();
