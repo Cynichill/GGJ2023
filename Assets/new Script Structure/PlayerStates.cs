@@ -29,6 +29,11 @@ public abstract class PlayerStates
 
     }
 
+    public virtual void Swap(Item newItem)
+    {
+
+    }
+
     public virtual void Move()
     {
 

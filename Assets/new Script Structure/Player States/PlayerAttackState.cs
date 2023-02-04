@@ -10,6 +10,9 @@ public class PlayerAttackState : PlayerStates
 
     private Vector2 moveThisFrame = Vector2.zero;
 
+    //Set active item to axe initially
+    private Item item = new ItemAxe();
+
     public override void Initiate(PlayerManager playerRef, GameObject obj)
     {
         base.Initiate(playerRef, obj);
@@ -19,23 +22,16 @@ public class PlayerAttackState : PlayerStates
     public override void ActionPrimary()
     {
         base.ActionPrimary();
-        Debug.Log("I am functional");
+        Debug.Log("Performing item action");
+
+        //Check in facing direction for enemy. If enemy found (vine), chop / burn
+        item.Use();
     }
 
     public override void HandleMoveInput(Vector2 movement)
     {
 
-        Debug.Log("transformed movement called");
-
         //LOGAN YOUR SCUFFED MOVE CODE GOES BELOW HERE
-        if (movement == new Vector2(0, 0))
-        {
-            //  ChangeAnimationState(PLAYER_IDLE);
-        }
-        else
-        {
-            // ChangeAnimationState(PLAYER_WALK);
-        }
 
         // If the input is moving the player right and the player is facing left...
         if (movement.x > 0 && !m_FacingRight)
@@ -64,6 +60,14 @@ public class PlayerAttackState : PlayerStates
         {
             moveThisFrame.x = 0;
         }
+    }
+
+    //Swaps the currently in use item with the item that should be used
+    public override void Swap(Item newItem)
+    {
+        item.Swap();
+        item = newItem;
+        item.Initialise();
     }
 
     public override void Move()
