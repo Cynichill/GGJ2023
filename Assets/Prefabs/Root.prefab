@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8648951539745214848}
   - component: {fileID: 1769157319607667642}
   - component: {fileID: 6034205322984988595}
+  - component: {fileID: 4861632088142953879}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -47,9 +48,10 @@ MonoBehaviour:
   parent: {fileID: 0}
   rootPrefab: {fileID: 3443904181631719297}
   children: []
-  pointA: {x: 0, y: 0, z: 0}
-  pointB: {x: 0, y: -1, z: 0}
+  positions: []
+  collider: {fileID: 0}
   isDead: 0
+  edgeCollider: {fileID: 0}
 --- !u!120 &6034205322984988595
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -101,7 +103,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.11538887
+        value: 0.09964353
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -146,5 +148,27 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!68 &4861632088142953879
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443904181631719297}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0}
+  - {x: 0.5, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
