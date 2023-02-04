@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootPrefab: {fileID: 3443904181631719297, guid: c8ed43cd43f5443dea63bdec2290099b, type: 3}
+  roots: []
 --- !u!4 &826079544
 Transform:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class RootOrigin : MonoBehaviour
 {
     public GameObject rootPrefab;
-    private Vector3[] goals = {new Vector3(5, -8, 0), new Vector3(-5, -8, 0), new Vector3(5, -4, 0), new Vector3(-5, -4, 0)};
+    private Vector3[] goals = {new Vector3(5, -4, 0), new Vector3(-5, -4, 0), new Vector3(5, 4, 0), new Vector3(-5, 4, 0)};
     public List<Root> roots = new List<Root>();
 
 
