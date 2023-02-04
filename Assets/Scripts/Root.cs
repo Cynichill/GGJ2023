@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Root : MonoBehaviour
 {
-    public Root[] parents = []
+    //public Root[] parents = [];
     private LineRenderer lines;
     public GameObject rootPrefab;
     private float mutationRate = 0.5f;
@@ -32,7 +32,7 @@ public class Root : MonoBehaviour
         if(count < 10){
             doesBranch();
         } else {
-            Debug.Log(branches);
+            //Debug.Log(branches);
             Time.timeScale = 0;
         }
     }
@@ -47,6 +47,6 @@ public class Root : MonoBehaviour
     void createChild() {
         //Vector3 newPoint
 
-        branches.Add(newRoot);
+        //branches.Add(newRoot);
     }
 }
