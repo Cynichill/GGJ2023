@@ -29,9 +29,9 @@ public class CameraMove : MonoBehaviour
     void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
-        minPosition = gm.minPosition;
-        maxPosition = gm.maxPosition;
+       // gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
+      //  minPosition = gm.minPosition;
+       // maxPosition = gm.maxPosition;
     }
 
     void FixedUpdate()
