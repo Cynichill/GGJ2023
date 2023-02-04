@@ -18,10 +18,15 @@ public abstract class PlayerStates
     
     }
 
-    public virtual void Move(Vector2 movement)
+    public virtual void HandleMoveInput(Vector2 movement)
     {
             
         Debug.Log("Base move called");
+    }
+
+    public virtual void Move()
+    {
+
     }
 
     //Logic methods

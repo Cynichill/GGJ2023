@@ -9,9 +9,9 @@ public class PlayerSetupState : PlayerStates
         Debug.Log("I am functional");
     }
 
-    public override void Move(Vector2 movement)
+    public override void HandleMoveInput(Vector2 movement)
     {
-        base.Move(movement);
+        base.HandleMoveInput(movement);
 
         //LOGAN YOUR SCUFFED MOVE CODE GOES BELOW HERE
 

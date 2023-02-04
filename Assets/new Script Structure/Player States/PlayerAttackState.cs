@@ -8,6 +8,8 @@ public class PlayerAttackState : PlayerStates
     private float moveSpeed = 5;
     private Rigidbody2D rb;
 
+    private Vector2 moveThisFrame = Vector2.zero;
+
     public override void Initiate(PlayerManager playerRef, GameObject obj)
     {
         base.Initiate(playerRef, obj);
@@ -20,7 +22,7 @@ public class PlayerAttackState : PlayerStates
         Debug.Log("I am functional");
     }
 
-    public override void Move(Vector2 movement)
+    public override void HandleMoveInput(Vector2 movement)
     {
         
         Debug.Log("transformed movement called");
@@ -43,7 +45,14 @@ public class PlayerAttackState : PlayerStates
         {
             Flip();
         }
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
+
+        moveThisFrame = movement * moveSpeed * Time.deltaTime;
+    }
+
+    public override void Move()
+    {
+
+        rb.MovePosition(rb.position + moveThisFrame);
     }
 
     private void Flip()
