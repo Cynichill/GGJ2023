@@ -55,6 +55,7 @@ public class PlayerManager : MonoBehaviour
         controls = new PlayerControl();
         controls.Player.Interact.performed += ctx => playerState.ActionPrimary();
         controls.Player.Move.performed += ctx => playerState.HandleMoveInput(ctx.ReadValue<Vector2>());
+        controls.Player.Move.canceled += ctx => playerState.StopMoveInput(ctx.ReadValue<Vector2>());
 
         //Setup player transform reference
         if (playerObj == null)

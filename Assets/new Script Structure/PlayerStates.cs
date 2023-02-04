@@ -24,6 +24,11 @@ public abstract class PlayerStates
         Debug.Log("Base move called");
     }
 
+    public virtual void StopMoveInput(Vector2 movement)
+    {
+
+    }
+
     public virtual void Move()
     {
 

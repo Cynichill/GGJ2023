@@ -24,8 +24,9 @@ public class PlayerAttackState : PlayerStates
 
     public override void HandleMoveInput(Vector2 movement)
     {
-        
+
         Debug.Log("transformed movement called");
+
         //LOGAN YOUR SCUFFED MOVE CODE GOES BELOW HERE
         if (movement == new Vector2(0, 0))
         {
@@ -46,13 +47,28 @@ public class PlayerAttackState : PlayerStates
             Flip();
         }
 
-        moveThisFrame = movement * moveSpeed * Time.deltaTime;
+        moveThisFrame = movement * moveSpeed;
+    }
+
+    public override void StopMoveInput(Vector2 movement)
+    {
+        if (movement == new Vector2(0, 0))
+        {
+            moveThisFrame = Vector2.zero;
+        }
+        else if(movement.x != 0)
+        {
+            moveThisFrame.y = 0;
+        }
+        else if(movement.y != 0)
+        {
+            moveThisFrame.x = 0;
+        }
     }
 
     public override void Move()
     {
-
-        rb.MovePosition(rb.position + moveThisFrame);
+        rb.MovePosition(rb.position + moveThisFrame * Time.deltaTime);
     }
 
     private void Flip()
