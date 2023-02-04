@@ -21,6 +21,7 @@ public class Tile : MonoBehaviour
     7 - Pearl Node
     8- Gold Node
     9 - Errol Node
+    10 - Root spawn node
     */
     private bool occupied = false;
 
@@ -137,6 +138,15 @@ public class Tile : MonoBehaviour
                     var spawnNode = Instantiate(resourceNode, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     spawnNode.GetComponent<ResourceNode>().ChangeType(6);
                     spawnNode.transform.parent = this.transform;
+                    break;
+                }
+            case 10:
+                {
+                    //Spawn Root
+                    _rend.color = Color.blue;
+                    tileBox.enabled = false;
+                    occupied = true;
+
                     break;
                 }
         }
