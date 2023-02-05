@@ -25,7 +25,7 @@ public class ItemAxe : Item
         Debug.Log("Vibe");
         
         //Casts rays left or right dependant on wether or not 
-        Ray2D hitRay = new Ray2D(usingPlayer.GetGameObject().transform.position, usingPlayer.IsFacingLeft() ? Vector2.left : Vector2.right);
+        Ray2D hitRay = new Ray2D(usingPlayer.GetGameObject().transform.position, usingPlayer.currentMovement);
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(hitRay.origin, hitRay.direction);
 

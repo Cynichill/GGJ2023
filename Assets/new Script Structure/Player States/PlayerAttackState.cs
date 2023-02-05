@@ -40,15 +40,9 @@ public class PlayerAttackState : PlayerStates
         secondaryItem.Use(player);
     }
 
-    public override bool GetMoveDirection()
+    public override Vector2 GetMoveDirection()
     {
-        //True on left, false on right
-        if (m_FacingRight)
-        {
-            return false;
-        }
-
-        return true;
+        return moveThisFrame;
     }
 
     public override void HandleMoveInput(Vector2 movement)
