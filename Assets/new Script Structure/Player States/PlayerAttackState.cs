@@ -5,6 +5,7 @@ public class PlayerAttackState : PlayerStates
 {
 
     private bool m_FacingRight;
+    private bool m_FacingUp;
     private float moveSpeed = 10;
     private Rigidbody2D rb;
 
