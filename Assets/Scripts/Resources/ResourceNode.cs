@@ -35,10 +35,9 @@ public class ResourceNode : MonoBehaviour, IChoppable
             fixMulti = true;
 
             health -= damage;
-            if (health <= 0)
-            {
-                GiveResources();
-            }
+
+            GiveResources();
+
         }
     }
 

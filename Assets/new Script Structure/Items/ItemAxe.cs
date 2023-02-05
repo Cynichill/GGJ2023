@@ -32,13 +32,16 @@ public class ItemAxe : Item
         foreach (RaycastHit2D hit in hits)
         {
             //Guard clause against not choppable
-            if (hit.collider.gameObject.GetComponent<IChoppable>() == null)
+            if (hit.collider.gameObject.GetComponent<IChoppable>() != null)
+            {
+                target = hit.collider.gameObject.GetComponent<IChoppable>();
+                hitLocation = hitRay.direction * hit.distance;
+                break;
+            }
+            else
             {
                 continue;
             }
-            target = hit.collider.gameObject.GetComponent<IChoppable>();
-            hitLocation = hitRay.direction * hit.distance;
-
         }
 
         //Guard clause against no target
