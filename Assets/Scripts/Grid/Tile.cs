@@ -10,44 +10,44 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject drill;
     [SerializeField] private GameObject resourceNode;
     [SerializeField] private GameObject rootOrigin;
-    public int tileType = 0;
+    public string tileType;
     /*
-    0 - Default
-    1 - Edge tile
-    2 - Goal tile
-    3 - Root spawn node
-    3 - Ruby Node
-    4 - Diamond Node
-    5 - Sapphire Node
-    6 - Amethyst Node
-    7 - Pearl Node
-    8- Gold Node
-    9 - Errol Node
-    10 - Root spawn node
+    z - Default
+    y - Edge tile
+    x - Goal tile
+    w - Root spawn node
+    v - player spawn
+    a - Ruby Node
+    b - Diamond Node
+    c - Sapphire Node
+    d - Amethyst Node
+    e - Pearl Node
+    f - Gold Node
+    g - Errol Node
     */
     private bool occupied = false;
 
-    public void SetTileType(int changeToType)
+    public void SetTileType(string changeToType)
     {
         tileType = changeToType;
 
         switch (tileType)
         {
-            case 0:
+            case "z":
                 {
                     //Default tile
                     tileBox.enabled = false;
                     break;
                 }
 
-            case 1:
+            case "y":
                 {
                     //Edge Tile
                     _rend.color = Color.black;
                     tileBox.enabled = true;
                     break;
                 }
-            case 2:
+            case "x":
                 {
                     //Goal Tile
                     _rend.color = Color.yellow;
@@ -58,9 +58,9 @@ public class Tile : MonoBehaviour
                     spawnDrill.transform.parent = this.transform;
                     break;
                 }
-            case 3:
+            case "w":
                 {
-                  //Spawn Root
+                    //Spawn Root
                     _rend.color = Color.blue;
                     tileBox.enabled = false;
                     occupied = true;
@@ -69,7 +69,30 @@ public class Tile : MonoBehaviour
 
                     break;
                 }
-            case 4:
+
+            case "v":
+                {
+                    //Spawn Root
+                    _rend.color = Color.red;
+                    tileBox.enabled = false;
+                    occupied = true;
+
+                    GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    break;
+                }
+            case "a":
+                {
+                    //Resource Node - Ruby
+                    _rend.color = Color.grey;
+                    tileBox.enabled = false;
+                    occupied = true;
+
+                    var spawnNode = Instantiate(resourceNode, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    spawnNode.GetComponent<ResourceNode>().ChangeType(0);
+                    spawnNode.transform.parent = this.transform;
+                    break;
+                }
+            case "b":
                 {
                     //Resource Node - Diamond
                     _rend.color = Color.grey;
@@ -81,7 +104,7 @@ public class Tile : MonoBehaviour
                     spawnNode.transform.parent = this.transform;
                     break;
                 }
-            case 5:
+            case "c":
                 {
                     //Resource Node - Sapphire
                     _rend.color = Color.grey;
@@ -93,7 +116,7 @@ public class Tile : MonoBehaviour
                     spawnNode.transform.parent = this.transform;
                     break;
                 }
-            case 6:
+            case "d":
                 {
                     //Resource Node - Amethyst
                     _rend.color = Color.grey;
@@ -105,7 +128,7 @@ public class Tile : MonoBehaviour
                     spawnNode.transform.parent = this.transform;
                     break;
                 }
-            case 7:
+            case "e":
                 {
                     //Resource Node - Pearl
                     _rend.color = Color.grey;
@@ -117,7 +140,7 @@ public class Tile : MonoBehaviour
                     spawnNode.transform.parent = this.transform;
                     break;
                 }
-            case 8:
+            case "f":
                 {
                     //Resource Node - Gold
                     _rend.color = Color.grey;
@@ -129,7 +152,7 @@ public class Tile : MonoBehaviour
                     spawnNode.transform.parent = this.transform;
                     break;
                 }
-            case 9:
+            case "g":
                 {
                     //Resource Node - Errol
                     _rend.color = Color.grey;
@@ -146,7 +169,7 @@ public class Tile : MonoBehaviour
 
     public void Init(bool isOffset)
     {
-        if (tileType == 0)
+        if (tileType == "z")
         {
             _rend.color = isOffset ? offsetColour : BaseColour;
         }

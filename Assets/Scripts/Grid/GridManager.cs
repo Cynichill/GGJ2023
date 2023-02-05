@@ -10,12 +10,12 @@ public class GridManager : MonoBehaviour
 
     string[] mapData = new string[]
 {
-            "1111111111", "1134567891", "1000002001","1000000001","1020000001","1000000001","1000000001","1000000001","1000000001","1000000001","1000000001","1000000001","1111111111"
+            "yyyyyyyyyy", "ywabcdefgy", "yzzzzxzzzy","yzzzzxzzzy","yzzzvzzzzy","yzzzzzzzzy","yzzzzzzzzy","yyyyyyyyyy"
 };
 
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         gridSizeX = mapData[0].ToCharArray().Length;
         gridSizeY = mapData.Length;
@@ -38,13 +38,12 @@ public class GridManager : MonoBehaviour
 
     private void PlaceTile(string tileType, int x, int y)
     {
-        int passType = int.Parse(tileType);
         //Spawn tile, set this manager as parent
         var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y, 0), Quaternion.identity);
         spawnedTile.transform.parent = this.transform;
         spawnedTile.name = $"Tile {x} {y}";
 
-        spawnedTile.SetTileType(passType);
+        spawnedTile.SetTileType(tileType);
 
         //Set alternating colours for tiles
         var isOdd = (x % 2 == 0 && y % 2 != 0 || y % 2 == 0 && x % 2 != 0);

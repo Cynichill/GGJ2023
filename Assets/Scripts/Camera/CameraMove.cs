@@ -19,14 +19,14 @@ public class CameraMove : MonoBehaviour
 
     //Camera direction changing
     private bool direction = false; //Left is false, right is true
-    private float directionAdd = 4;
+    private float directionAdd = 2;
     private float directionChange;
     private bool moveCam = true;
 
     //Respawn fixing
     public bool respawnFix;
 
-    void Awake()
+    void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
        // gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
