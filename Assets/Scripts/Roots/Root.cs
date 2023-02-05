@@ -270,6 +270,8 @@ public class Root : Enemy, IChoppable, IBurnable
 
     public void Chop(Vector2 hitPoint)
     {
+
+        FindObjectOfType<AudioManager>().Play("RootHurt");
         Debug.Log("chop!");
         Vector3 hit = hitPoint;
         hit = hit + new Vector3(0, 0, -2);

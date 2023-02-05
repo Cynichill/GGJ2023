@@ -36,6 +36,8 @@ public class ResourceNode : MonoBehaviour, IChoppable
 
             health -= damage;
 
+            FindObjectOfType<AudioManager>().Play("NodeDestroy");
+
             GiveResources();
 
         }
