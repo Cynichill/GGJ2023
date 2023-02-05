@@ -110,7 +110,6 @@ public class Root : Enemy, IChoppable, IBurnable
                 positions.Add(newPoint);
                 Draw(); 
             }
-            positions.Add(positions.Last() + new Vector3(1,1,0));
             Draw();
         } else {
             growing = false;  
