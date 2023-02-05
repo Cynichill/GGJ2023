@@ -44,8 +44,7 @@ public class ItemAxe : Item
         //Guard clause against no target
         if (target != null)
         {
-            Vector2 choppy = new Vector2(usingPlayer.GetGameObject().transform.position.x,usingPlayer.GetGameObject().transform.position.y)+ hitLocation;
-            target.Chop(choppy);
+            target.Chop(usingPlayer.GetGameObject().transform.position + hitLocation);
         }
 
          
