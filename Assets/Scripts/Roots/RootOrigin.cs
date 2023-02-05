@@ -14,7 +14,7 @@ public class RootOrigin : MonoBehaviour
     {
         GameObject newRootRef = Instantiate(rootPrefab, new Vector3(0,0,0), transform.rotation);
         Root newRoot = newRootRef.GetComponent<Root>();
-        newRoot.Initialize(transform.position, 0.1f, goals[Random.Range(0,3)]);
+        newRoot.Initialize(transform.position, 0.6f, goals[Random.Range(0,3)], rootPrefab);
         roots.Add(newRoot);
     }
 
