@@ -102,6 +102,7 @@ MonoBehaviour:
   tileBox: {fileID: 4107998332669270995}
   drill: {fileID: 8902261110609406136, guid: e8c8e8c19d134cf42a6d1212522f14e2, type: 3}
   resourceNode: {fileID: 7230940879844196804, guid: 50bee2d4a10097246ab21a7f6f5e680c, type: 3}
+  rootOrigin: {fileID: 5850660762545058706, guid: 9222d43e879ef40cba101a6566d8d0a6, type: 3}
   tileType: 0
 --- !u!61 &4107998332669270995
 BoxCollider2D:

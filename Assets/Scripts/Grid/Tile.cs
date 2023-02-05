@@ -9,11 +9,13 @@ public class Tile : MonoBehaviour
     [SerializeField] private BoxCollider2D tileBox;
     [SerializeField] private GameObject drill;
     [SerializeField] private GameObject resourceNode;
+    [SerializeField] private GameObject rootOrigin;
     public int tileType = 0;
     /*
     0 - Default
     1 - Edge tile
     2 - Goal tile
+    3 - Root spawn node
     3 - Ruby Node
     4 - Diamond Node
     5 - Sapphire Node
@@ -58,14 +60,13 @@ public class Tile : MonoBehaviour
                 }
             case 3:
                 {
-                    //Resource Node - Ruby
-                    _rend.color = Color.grey;
+                  //Spawn Root
+                    _rend.color = Color.blue;
                     tileBox.enabled = false;
                     occupied = true;
 
-                    var spawnNode = Instantiate(resourceNode, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                    spawnNode.GetComponent<ResourceNode>().ChangeType(0);
-                    spawnNode.transform.parent = this.transform;
+                    var spawnRoot = Instantiate(rootOrigin, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+
                     break;
                 }
             case 4:
@@ -138,15 +139,6 @@ public class Tile : MonoBehaviour
                     var spawnNode = Instantiate(resourceNode, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     spawnNode.GetComponent<ResourceNode>().ChangeType(6);
                     spawnNode.transform.parent = this.transform;
-                    break;
-                }
-            case 10:
-                {
-                    //Spawn Root
-                    _rend.color = Color.blue;
-                    tileBox.enabled = false;
-                    occupied = true;
-
                     break;
                 }
         }

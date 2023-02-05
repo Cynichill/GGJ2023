@@ -31,7 +31,7 @@ public class Root : MonoBehaviour
         lines.material.SetColor("_Color", new Color(225/255f,228/255f,196/255f, 1f));
 
         // set the origin point of this root
-        positions = new List<Vector3> {start, new Vector3(0.01f,0.01f,1) + start};
+        positions = new List<Vector3> {start, new Vector3(0.01f,0.01f,-1f) + start};
 
         // set the rate that new branches form and the direction of growth
         mutationRate = mutate;
