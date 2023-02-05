@@ -39,6 +39,15 @@ public class PlayerManager : MonoBehaviour
     //Data trackers
     private bool enabled = true; //Selectivley enables and disables the player in update.
 
+    private bool facingLeft
+    {
+        get
+        {
+            //true is "yes, i am facing left".
+            //False is "no".
+            return playerState.GetMoveDirection();
+        }
+    }
 
     //Reference to active player state
     private PlayerStates playerState;
@@ -76,6 +85,12 @@ public class PlayerManager : MonoBehaviour
     //methods
 
     //Public
+
+    public bool IsFacingLeft()
+    {
+        return facingLeft;
+    }
+
     public void HandlePlayerActions()
     {
         //guard clause
@@ -133,6 +148,11 @@ public class PlayerManager : MonoBehaviour
         playerState.SwitchFrom();
         playerState = newState;
         playerState.Initiate(this, playerObj);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return playerObj;
     }
 
     //private

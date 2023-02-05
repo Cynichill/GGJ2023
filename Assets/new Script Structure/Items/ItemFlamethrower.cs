@@ -13,8 +13,8 @@ public class ItemFlamethrower : Item
         base.Swap();
     }
 
-    public override void Use()
+    public override void Use(PlayerManager usingPlayer)
     {
-        base.Use();
+        base.Use(usingPlayer);
     }
 }
