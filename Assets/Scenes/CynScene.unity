@@ -1474,7 +1474,7 @@ MonoBehaviour:
   PearlText: {fileID: 842231036}
   GoldText: {fileID: 677495945}
   ErrolText: {fileID: 926126410}
-  currentMovement: {x: 0, y: 0}
+  currentMovement: {x: 0, y: 4}
   playerObj: {fileID: 0}
 --- !u!114 &772522113
 MonoBehaviour:
@@ -2373,7 +2373,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b4e2e41bd420742950e5a391cadbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - clip: {fileID: 8300000, guid: 5623179dd4a70964eb4a42610e85cca1, type: 3}
+    name: RoundStart
+    group: {fileID: 4477559028413449267, guid: 37c1e3cb360ea7f4cb55bf5fae9c3ec6, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 281f289585ecfb648a1b93c858fb045b, type: 3}
+    name: DrillHurt
+    group: {fileID: 4477559028413449267, guid: 37c1e3cb360ea7f4cb55bf5fae9c3ec6, type: 2}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 23d630358ac85f64c9e171b620b74669, type: 3}
+    name: NodeDestroy
+    group: {fileID: 4477559028413449267, guid: 37c1e3cb360ea7f4cb55bf5fae9c3ec6, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c0ab98ad40561934aab346dd04f6bf63, type: 3}
+    name: RootHurt
+    group: {fileID: 4477559028413449267, guid: 37c1e3cb360ea7f4cb55bf5fae9c3ec6, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &1055117531
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,6 +61,7 @@ public class GameStateManager : MonoBehaviour
     public void StartAttackPhase()
     {
         timer = timePerWave;
+        FindObjectOfType<AudioManager>().Play("RoundStart");
         //mapManager.InitiateWave(wave);
         gameState = GameState.Attack;
     }

@@ -276,6 +276,7 @@ public class Root : Enemy, IChoppable, IBurnable
         //-Fio
 
 
+        FindObjectOfType<AudioManager>().Play("RootHurt");
         Debug.Log("chop!");
         Vector3 hit = hitPoint;
         hit = hit + new Vector3(0, 0, -2);

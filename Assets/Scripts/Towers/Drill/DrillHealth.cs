@@ -34,6 +34,8 @@ public class DrillHealth : MonoBehaviour
         health -= damage;
         slider.value = health;
 
+        FindObjectOfType<AudioManager>().Play("DrillHurt");
+
         if (health <= 0)
         {
             GameObject.FindGameObjectWithTag("GM").GetComponent<GameStateManager>().DoLossCondition();
