@@ -32,7 +32,7 @@ public class ItemAxe : Item
         foreach (RaycastHit2D hit in hits)
         {
             //Guard clause against object out of range
-            if (hit.distance > 3f)
+            if (hit.distance > 0.5f)
             {
                 continue;
             }

@@ -317,6 +317,8 @@ public class Root : Enemy, IChoppable, IBurnable
                 */
             }
         }
+
+        attacking = false;
         Debug.Log("done");
         
     }
