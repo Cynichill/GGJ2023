@@ -44,7 +44,7 @@ public class ItemAxe : Item
         //Guard clause against no target
         if (target != null)
         {
-            target.Chop(usingPlayer.GetGameObject().transform.position + hitLocation);
+            target.Chop(usingPlayer.GetGameObject().transform.position + new Vector3(hitLocation.x, hitLocation.y, 0));
         }
 
          
