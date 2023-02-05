@@ -13,7 +13,7 @@ public class GridManager : MonoBehaviour
 
     string[] mapData = new string[]
 {
-            "yyyyyyyyyy", "ywabcdefgy", "yzzzzxzzzy","yzzzzxzzzy","yzzzvzzzzy","yzzzzzzzzy","yzzzzzzzzy","yyyyyyyyyy"
+            "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", "yzzzzzzdzzzzzzzczzzzzzzzzzzzzy", "yzzzzzbzzzzzzzzzzzzzzzzzzzzzzy","yzzzzzzzzzzzzzzzzzzzzzzzzzzzzy","yzzzzzzzzzzwzzzzzzzzzazzzzzzzy","yzzzzzzzzzzzzzzazzzzxzzzzzzzzy","yzzzzzzzzzzzzzzzzzzzzzzzzzzzzy","yzzzzzzezzzzzzzzzzzzzzzzzzzzzy", "yzzzzzzzzzzzzzzwzzzzzzzzzzzzzy", "yzzzzzzzzzzzzzzzzzzzzzzzzzzzzy", "yzzzzzzzzzyyyyyyyyyyyyyyyyyyyy", "yzzzzzzbzzyyyyyyyyyyyyyyyyyyyy", "yzzzzzzzzzyyyyyyyyyyyyyyyyyyyy", "yzzzzzzzzzyyyyyyyyyyyyyyyyyyyy", "yzzzzzzwzzyyyyyyyyyyyyyyyyyyyy", "yzzzzvzzzzyyyyyyyyyyyyyyyyyyyy", "yzzzdzzzzzyyyyyyyyyyyyyyyyyyyy", "yzzzzazzzzyyyyyyyyyyyyyyyyyyyy", "yzzzzczzzzyyyyyyyyyyyyyyyyyyyy", "yzzzzzzzzzyyyyyyyyyyyyyyyyyyyy", "yzzzzzzzzzzzzzzzzzzzfzzzzzzzzy", "yzzzzwzzzzzzzzzzzzzezzzzzzzzzy", "yzzzzzzzzzzzbzzzzzzzzzzzzzzzzy", "yzzzzzzzzzzzzzzzzzzzzzzzzzzzzy", "yzzzzzzzazzzzzzzzzzzxzzzzzzzzy", "yzzzzzzczzzzzzzzzzzzzzzzzzzzzy", "yzzzzzzzzzzzzzzzzzzzzzzzzzzzzy", "yzzzzzzzbzzzzzzzzzzzfzzzzzzzzy", "yzzzzgzzzzzzzzzzazzzzzzzzwzzzy", "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
 };
 
 

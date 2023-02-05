@@ -9,7 +9,7 @@ public class ResourceNode : MonoBehaviour
     private PlayerManager pm;
 
     private int nodeType = 0;
-    private int health = 100;
+    private int health = 10;
 
     private void Awake()
     {
@@ -19,7 +19,6 @@ public class ResourceNode : MonoBehaviour
     public void ChangeType(int type)
     {
         nodeType = type;
-        health += type * 10;
         rend.sprite = sprites[type];
     }
 
