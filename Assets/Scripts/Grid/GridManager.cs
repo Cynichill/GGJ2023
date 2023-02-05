@@ -32,14 +32,12 @@ public class GridManager : MonoBehaviour
             for (int x = 0; x < gridSizeX; x++)
             {
                 PlaceTile(newRow[x].ToString(), x, y);
-
             }
         }
     }
 
     private void PlaceTile(string tileType, int x, int y)
     {
-
         if(tileType == "x")
         {
             goalCount += 1;
@@ -54,8 +52,6 @@ public class GridManager : MonoBehaviour
         //Set alternating colours for tiles
         var isOdd = (x % 2 == 0 && y % 2 != 0 || y % 2 == 0 && x % 2 != 0);
         spawnedTile.Init(isOdd);
-
-
     }
 
 }

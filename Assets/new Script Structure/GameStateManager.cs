@@ -13,7 +13,7 @@ public class GameStateManager : MonoBehaviour
         Attack
     }
 
-    private GameState gameState= GameState.Setup;
+    private GameState gameState = GameState.Attack;
 
     public PlayerManager playerManager;
 
@@ -21,9 +21,22 @@ public class GameStateManager : MonoBehaviour
 
     private int wave = 0; //How many waves have passed
     private int maxWaves = 5; //Max number of waves
-    private float timer = 0f;
+    private float timer = 60f;
     private float timePerWave = 60f; //in seconds
 
+    //Timer variables
+
+    private int textTime;
+    [SerializeField] private TMPro.TMP_Text timerText;
+    [SerializeField] private TMPro.TMP_Text maxWaveText;
+    [SerializeField] private TMPro.TMP_Text curWaveText;
+    
+
+    private void Start()
+    {
+        maxWaveText.text = maxWaves.ToString();
+        //SetUp();
+    }
 
     private void Update()
     {
@@ -35,23 +48,33 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    public void SetUp()
+    {
+        mapManager.GetWaveUtils();
+    }
+
     public void StartAttackPhase()
     {
         wave++;
+        curWaveText.text = wave.ToString();
         mapManager.InitiateWave(wave);
         gameState = GameState.Attack;
     }
 
     private void UpdateAttackTimer()
     {
-        timer += Time.deltaTime;
+        timer -= 1 * Time.deltaTime;
 
         //Implement enemy tick here
-        mapManager.WaveTick();
+        //mapManager.WaveTick();
 
-        if (timer > timePerWave)
+        textTime = (int)timer;
+        timerText.text = textTime.ToString();
+
+        if (timer <= 0)
         {
-            mapManager.CloseWave(wave);
+            timer = 0;
+            //mapManager.CloseWave(wave);
 
 
             if (wave == maxWaves)
@@ -61,9 +84,9 @@ public class GameStateManager : MonoBehaviour
             }
 
             timer = 0f;
-            gameState= GameState.Setup;
-
+            gameState = GameState.Setup;
         }
+
     }
 
     public void DoVictoryCondition()

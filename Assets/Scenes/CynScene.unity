@@ -662,6 +662,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282968180}
   m_CullTransparentMesh: 1
+--- !u!1 &286030989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3791655053895122551, guid: 20c529e39dea9f041ba6711de2318ea9, type: 3}
+  m_PrefabInstance: {fileID: 1399824233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &286030990
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286030989}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2bcdee32967b09d42869c2ec75bf9a6f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &296624749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,6 +1458,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0f8cf039226144db4e273c83f17e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WoodText: {fileID: 1144123297}
+  StoneText: {fileID: 0}
+  RubyText: {fileID: 0}
+  DiamondText: {fileID: 0}
+  SapphireText: {fileID: 0}
+  AmethystText: {fileID: 0}
+  PearlText: {fileID: 0}
+  GoldText: {fileID: 0}
+  ErrolText: {fileID: 0}
   playerObj: {fileID: 0}
 --- !u!114 &772522113
 MonoBehaviour:
@@ -1447,6 +1481,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 772522112}
+  timerText: {fileID: 1152625217}
+  maxWaveText: {fileID: 1737105921}
+  curWaveText: {fileID: 872445095}
 --- !u!1 &779216100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,9 +1837,9 @@ GameObject:
   m_Component:
   - component: {fileID: 908686783}
   - component: {fileID: 908686782}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GridManager
-  m_TagString: Untagged
+  m_TagString: GridManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2473,10 +2510,9 @@ GameObject:
   - component: {fileID: 1152625216}
   - component: {fileID: 1152625218}
   - component: {fileID: 1152625217}
-  - component: {fileID: 1152625219}
   m_Layer: 5
   m_Name: RemainTime
-  m_TagString: Untagged
+  m_TagString: TimerUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2597,19 +2633,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152625215}
   m_CullTransparentMesh: 1
---- !u!114 &1152625219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152625215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a70751719589c9488aad60ebb1e824e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 1152625217}
 --- !u!1 &1166483693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,6 +2691,7 @@ GameObject:
   - component: {fileID: 1173705918}
   - component: {fileID: 1173705917}
   - component: {fileID: 1173705916}
+  - component: {fileID: 1173705920}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2760,6 +2784,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &1173705920
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173705915}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccfc429e2ee3bdd49a22b78b0dd01f19, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1180095961
 GameObject:
   m_ObjectHideFlags: 0

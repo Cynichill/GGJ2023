@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class MapManager
 {
-    public GridManager gridManager;
+    private GridManager gridManager;
+
+    public void GetWaveUtils()
+    {
+        //gridManager = GameObject.FindGameObjectWithTag("GridManager").GetComponent<GridManager>();
+    }
 
     public void InitiateWave(int waveNumber)
     {
