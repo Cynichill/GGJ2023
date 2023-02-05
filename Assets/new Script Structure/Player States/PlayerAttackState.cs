@@ -26,14 +26,25 @@ public class PlayerAttackState : PlayerStates
         Debug.Log("Performing item action");
 
         //Check in facing direction for enemy. If enemy found (vine), chop / burn
-        item.Use();
+        item.Use(player);
     }
 
     public override void ActionSecondary()
     {
         base.ActionSecondary();
 
-        secondaryItem.Use();
+        secondaryItem.Use(player);
+    }
+
+    public override bool GetMoveDirection()
+    {
+        //True on left, false on right
+        if (m_FacingRight)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public override void HandleMoveInput(Vector2 movement)

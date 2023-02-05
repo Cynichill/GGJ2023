@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IChoppable, IBurnable
 {
-    public virtual void Chop()
+    public virtual void Chop(Vector2 hitPoint)
     {
 
     }

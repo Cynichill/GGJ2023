@@ -13,7 +13,7 @@ public abstract class PlayerStates
         
     }
 
-    public virtual void ActionSecondary()
+    public  virtual void ActionSecondary()
     {
     
     }
@@ -49,5 +49,10 @@ public abstract class PlayerStates
     {
         player = playerRef;
         playerObj = obj;
+    }
+
+    public virtual bool GetMoveDirection()
+    {
+        return true;
     }
 }

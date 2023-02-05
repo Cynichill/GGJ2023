@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Item
 {
-    public virtual void Use()
+    public virtual void Use(PlayerManager usingPlayer)
     {
 
     }
