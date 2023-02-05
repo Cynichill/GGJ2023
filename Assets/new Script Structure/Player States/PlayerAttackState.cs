@@ -6,6 +6,7 @@ public class PlayerAttackState : PlayerStates
 
     private bool m_FacingRight;
     private bool m_FacingUp;
+    private bool unchanged = false;
     private bool lrLast = false;
     private float moveSpeed = 10;
     private Rigidbody2D rb;
@@ -29,6 +30,23 @@ public class PlayerAttackState : PlayerStates
         base.ActionPrimary();
         Debug.Log("Performing item action");
 
+        unchanged = true;
+
+        if (lrLast)
+        {
+            ChangeAnimationState("PlayerSideChop");
+        }
+        else if (m_FacingUp)
+        {
+            ChangeAnimationState("PlayerUpChop");
+        }
+        else
+        {
+            ChangeAnimationState("PlayerDownChop");
+        }
+
+        currentState = "";
+
         //Check in facing direction for enemy. If enemy found (vine), chop / burn
         item.Use(player);
     }
@@ -47,21 +65,24 @@ public class PlayerAttackState : PlayerStates
 
     public override void HandleMoveInput(Vector2 movement)
     {
-        if(movement.x != 0)
+
+        unchanged = false;
+
+        if (movement.x != 0)
         {
             ChangeAnimationState("PlayerSideWalk");
             lrLast = true;
         }
 
-        if(movement.x == 0)
+        if (movement.x == 0)
         {
-            if(movement.y > 0)
+            if (movement.y > 0)
             {
                 ChangeAnimationState("PlayerUpWalk");
                 m_FacingUp = true;
                 lrLast = false;
             }
-            else if(movement.y < 0)
+            else if (movement.y < 0)
             {
                 ChangeAnimationState("PlayerDownWalk");
                 m_FacingUp = false;
@@ -89,11 +110,11 @@ public class PlayerAttackState : PlayerStates
         if (movement == new Vector2(0, 0))
         {
             moveThisFrame = Vector2.zero;
-            if(lrLast)
+            if (lrLast)
             {
                 ChangeAnimationState("PlayerSideIdle");
             }
-            else if(m_FacingUp)
+            else if (m_FacingUp)
             {
                 ChangeAnimationState("PlayerUpIdle");
             }
