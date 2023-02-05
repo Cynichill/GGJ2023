@@ -47,14 +47,15 @@ public class Root : Enemy, IChoppable, IBurnable
     }
 
     // Set the origin, called on new root
-    void SetRoot(Vector3 start, Vector3 end) {
-        positions.Add(start);
-        positions.Add(end);
+    void SetPositions(List<Vector3> pos) {
+        positions = pos;
+        Draw();
     }
 
     // draw path
     public void Draw() {
         lines.positionCount = positions.Count;
+        //Debug.Log(lines.positionCount);
         lines.SetPositions(positions.ToArray());
         SetEdgeCollider();
     }
@@ -68,11 +69,21 @@ public class Root : Enemy, IChoppable, IBurnable
 
                 branchSpace++;
                 if(growing){
+                    count++;
                     Extend();
                 };   // grow this path
                 if(count < 2 && branchSpace >= 5){
-                        DoesBranch();   // grow additional path
+                    DoesBranch();   // grow additional path
                 } 
+
+                // if(count == 8){
+                //     Vector2 B = new Vector2(-3.99f, 1.01f);
+                //     Vector2 A = new Vector2(-2.99f, 2.01f);
+                //     Chop((A+B)/2);
+                //     count++;
+                // }
+
+                //  Debug.Log(positions.Count);
             }
     }
 
@@ -98,9 +109,9 @@ public class Root : Enemy, IChoppable, IBurnable
             if(create){ 
                 positions.Add(newPoint);
                 Draw(); 
-            } 
-            
-            
+            }
+            positions.Add(positions.Last() + new Vector3(1,1,0));
+            Draw();
         } else {
             growing = false;  
             positions.Add(goal);
@@ -132,15 +143,21 @@ public class Root : Enemy, IChoppable, IBurnable
 
         // path found, intialize new object
         if(create){
-            // create the new object
-            GameObject newRef = Instantiate(rootPrefab, transform.position, transform.rotation, transform.parent);
-            Root newRoot = newRef.GetComponent<Root>();
-
-            newRoot.Initialize(originPoint, mutationRate, goals[Random.Range(0,3)], rootPrefab);
-            children.Add(newRoot);
+            SpawnChild(originPoint, transform.parent);
         }
 
         branchSpace = 0;
+    }
+
+    Root SpawnChild(Vector3 originPoint, Transform parent) {
+        // create the new object
+        GameObject newRef = Instantiate(rootPrefab, transform.position, transform.rotation, parent);
+        Root newRoot = newRef.GetComponent<Root>();
+
+        newRoot.Initialize(originPoint, mutationRate, goals[Random.Range(0,3)], rootPrefab);
+        children.Add(newRoot);
+
+        return newRoot;
     }
 
     // set up collision body
@@ -202,4 +219,49 @@ public class Root : Enemy, IChoppable, IBurnable
         Debug.DrawRay(newPoint, pointA-newPoint, Color.green, 10000.0f, false);
         return !Physics2D.Linecast(newPoint, pointA);
     } 
+
+    public void Chop(Vector2 hitPoint) {
+        Debug.Log("chop!");
+        Vector3 hit = hitPoint;
+        hit = hit + new Vector3(0,0,-2);
+        Debug.Log(hit);
+
+        Vector3 pointA = new Vector3(0,0,0);
+        Vector3 pointB = new Vector3(0,0,0);
+        bool found = false;
+
+        for(int i = 1; i < positions.Count; i++){
+            Debug.Log(i);
+            pointA = positions.ElementAt(i-1);
+            pointB = positions.ElementAt(i);
+            //Debug.Log(pointA + " : " + pointB);
+            float d1 = Vector3.Distance(pointA,hit);
+            float d2 = Vector3.Distance(hit, pointB);
+            float sum = d1+d2;
+            float length = Vector3.Distance(pointA, pointB);
+            Debug.Log("d1: " + d1);
+            Debug.Log("d2: " + d2);
+            Debug.Log("Sum: " + sum);
+            Debug.Log("Length: " + length);
+            if(sum == length){
+                    Debug.Log("found");
+                    split(pointA,pointB);
+                    break;
+            }
+        }
+        Debug.Log("done");
+    }
+
+    void split(Vector3 A, Vector3 B){
+        Debug.Log("Splitting");
+        growing = false;
+
+        int i = positions.IndexOf(A);
+        int end = positions.Count-i;
+        //Debug.Log(i + " : " + end);
+
+        SpawnChild(B, transform.parent).SetPositions(positions.GetRange(i,end));
+        positions.RemoveRange(i, end);
+        Draw();
+    }
 }
