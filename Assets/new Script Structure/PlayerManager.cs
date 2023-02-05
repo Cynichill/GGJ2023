@@ -50,7 +50,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text GoldText;
     [SerializeField] private TMPro.TMP_Text ErrolText;
 
-    private bool facingLeft
+    public Vector2 currentMovement
     {
         get
         {
@@ -97,9 +97,9 @@ public class PlayerManager : MonoBehaviour
 
     //Public
 
-    public bool IsFacingLeft()
+    public Vector2 IsFacingLeft()
     {
-        return facingLeft;
+        return currentMovement;
     }
 
     public void HandlePlayerActions()
