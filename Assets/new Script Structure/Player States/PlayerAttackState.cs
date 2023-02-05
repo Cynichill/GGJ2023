@@ -109,6 +109,11 @@ public class PlayerAttackState : PlayerStates
         }
 
         moveThisFrame = movement * moveSpeed;
+
+        if (moveThisFrame.magnitude > 0.1)
+        {
+            player.currentMovement = moveThisFrame;
+        }
     }
 
     public override void StopMoveInput(Vector2 movement)
