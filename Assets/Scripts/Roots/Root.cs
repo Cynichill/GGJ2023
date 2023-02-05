@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Root : MonoBehaviour
+public class Root : Enemy, IChoppable, IBurnable
 {
     public Root parent;
     private LineRenderer lines;
@@ -133,7 +133,7 @@ public class Root : MonoBehaviour
         // path found, intialize new object
         if(create){
             // create the new object
-            GameObject newRef = Instantiate(rootPrefab, transform.position, transform.rotation);
+            GameObject newRef = Instantiate(rootPrefab, transform.position, transform.rotation, transform.parent);
             Root newRoot = newRef.GetComponent<Root>();
 
             newRoot.Initialize(originPoint, mutationRate, goals[Random.Range(0,3)], rootPrefab);
