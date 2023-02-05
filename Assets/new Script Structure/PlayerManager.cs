@@ -39,6 +39,17 @@ public class PlayerManager : MonoBehaviour
     //Data trackers
     private bool enabled = true; //Selectivley enables and disables the player in update.
 
+    //UI Text
+    [SerializeField] private TMPro.TMP_Text WoodText;
+    [SerializeField] private TMPro.TMP_Text StoneText;
+    [SerializeField] private TMPro.TMP_Text RubyText;
+    [SerializeField] private TMPro.TMP_Text DiamondText;
+    [SerializeField] private TMPro.TMP_Text SapphireText;
+    [SerializeField] private TMPro.TMP_Text AmethystText;
+    [SerializeField] private TMPro.TMP_Text PearlText;
+    [SerializeField] private TMPro.TMP_Text GoldText;
+    [SerializeField] private TMPro.TMP_Text ErrolText;
+
     private bool facingLeft
     {
         get
@@ -159,44 +170,53 @@ public class PlayerManager : MonoBehaviour
     //helpers
 
     //Updates resource ammounts
-    private void UpdateResources(ResourceDefinitions resource, int amount)
+    public void UpdateResources(ResourceDefinitions resource, int amount)
     {
         switch (resource)
         {
             case ResourceDefinitions.Wood:
                 playerResources.wood += amount;
+                WoodText.text = "x " + playerResources.wood.ToString();
                 break;
 
             case ResourceDefinitions.Stone: 
                 playerResources.stone += amount;
+                StoneText.text = "x " + playerResources.stone.ToString();
                 break;
 
             case ResourceDefinitions.GemRuby:
                 playerResources.gems.ruby += amount;
+                RubyText.text = "x " + playerResources.gems.ruby.ToString();
                 break;
 
             case ResourceDefinitions.GemDiamond:
                 playerResources.gems.diamond += amount;
+                DiamondText.text = "x " + playerResources.gems.diamond.ToString();
                 break;
 
             case ResourceDefinitions.GemSapphire:
                 playerResources.gems.sapphire += amount;
+                SapphireText.text = "x " + playerResources.gems.sapphire.ToString();
                 break;
 
             case ResourceDefinitions.GemAmethyst:
                 playerResources.gems.amethyst += amount;
+                AmethystText.text = "x " + playerResources.gems.amethyst.ToString();
                 break;
 
             case ResourceDefinitions.GemPearl:
                 playerResources.gems.pearl += amount;
+                PearlText.text = "x " + playerResources.gems.pearl.ToString();
                 break;
 
             case ResourceDefinitions.GemGold:
                 playerResources.gems.gold += amount;
+                GoldText.text = "x " + playerResources.gems.gold.ToString();
                 break;
 
             case ResourceDefinitions.GemErrol:
                 playerResources.gems.errol += amount;
+                ErrolText.text = "x " + playerResources.gems.errol.ToString();
                 break;
         }
     }

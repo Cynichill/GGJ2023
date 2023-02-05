@@ -6,6 +6,9 @@ TagManager:
   tags:
   - GM
   - OptionsManager
+  - DrillUITag
+  - GridManager
+  - TimerUI
   layers:
   - Default
   - TransparentFX

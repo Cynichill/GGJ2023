@@ -5,9 +5,12 @@ public class PlayerAttackState : PlayerStates
 {
 
     private bool m_FacingRight;
+    private bool m_FacingUp;
+    private bool lrLast = false;
     private float moveSpeed = 10;
     private Rigidbody2D rb;
-
+    private Animator anim;
+    private string currentState;
     private Vector2 moveThisFrame = Vector2.zero;
 
     //Set active item to axe initially
@@ -18,6 +21,7 @@ public class PlayerAttackState : PlayerStates
     {
         base.Initiate(playerRef, obj);
         rb = obj.GetComponent<Rigidbody2D>();
+        anim = obj.GetComponent<Animator>();
     }
 
     public override void ActionPrimary()
@@ -36,28 +40,43 @@ public class PlayerAttackState : PlayerStates
         secondaryItem.Use(player);
     }
 
-    public override bool GetMoveDirection()
+    public override Vector2 GetMoveDirection()
     {
-        //True on left, false on right
-        if (m_FacingRight)
-        {
-            return false;
-        }
-
-        return true;
+        return moveThisFrame;
     }
 
     public override void HandleMoveInput(Vector2 movement)
     {
+        if(movement.x != 0)
+        {
+            ChangeAnimationState("PlayerSideWalk");
+            lrLast = true;
+        }
+
+        if(movement.x == 0)
+        {
+            if(movement.y > 0)
+            {
+                ChangeAnimationState("PlayerUpWalk");
+                m_FacingUp = true;
+                lrLast = false;
+            }
+            else if(movement.y < 0)
+            {
+                ChangeAnimationState("PlayerDownWalk");
+                m_FacingUp = false;
+                lrLast = false;
+            }
+        }
 
         //LOGAN YOUR SCUFFED MOVE CODE GOES BELOW HERE
 
         // If the input is moving the player right and the player is facing left...
-        if (movement.x > 0 && !m_FacingRight)
+        if (movement.x > 0 && m_FacingRight)
         {
             Flip();
         }
-        else if (movement.x < 0 && m_FacingRight)
+        else if (movement.x < 0 && !m_FacingRight)
         {
             Flip();
         }
@@ -70,12 +89,25 @@ public class PlayerAttackState : PlayerStates
         if (movement == new Vector2(0, 0))
         {
             moveThisFrame = Vector2.zero;
+            if(lrLast)
+            {
+                ChangeAnimationState("PlayerSideIdle");
+            }
+            else if(m_FacingUp)
+            {
+                ChangeAnimationState("PlayerUpIdle");
+            }
+            else
+            {
+                ChangeAnimationState("PlayerDownIdle");
+            }
+
         }
-        else if(movement.x != 0)
+        else if (movement.x != 0)
         {
             moveThisFrame.y = 0;
         }
-        else if(movement.y != 0)
+        else if (movement.y != 0)
         {
             moveThisFrame.x = 0;
         }
@@ -91,5 +123,14 @@ public class PlayerAttackState : PlayerStates
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
         playerObj.transform.Rotate(0f, 180f, 0f);
+    }
+
+    private void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+        //play the animation
+        anim.Play(newState);
+        //reassign the current state
+        currentState = newState;
     }
 }

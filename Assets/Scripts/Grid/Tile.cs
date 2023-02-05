@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject drill;
     [SerializeField] private GameObject resourceNode;
     [SerializeField] private GameObject rootOrigin;
+    [SerializeField] private GameObject drillUIPrefab;
+    private RectTransform drillUIParent;
     public string tileType;
+
     /*
     z - Default
     y - Edge tile
@@ -27,7 +31,7 @@ public class Tile : MonoBehaviour
     */
     private bool occupied = false;
 
-    public void SetTileType(string changeToType)
+    public void SetTileType(string changeToType, int goalCount)
     {
         tileType = changeToType;
 
@@ -56,6 +60,11 @@ public class Tile : MonoBehaviour
 
                     var spawnDrill = Instantiate(drill, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     spawnDrill.transform.parent = this.transform;
+
+                    drillUIParent = GameObject.FindGameObjectWithTag("DrillUITag").GetComponent<RectTransform>();
+
+                    var spawnDUI = Instantiate(drillUIPrefab, new Vector3(drillUIParent.transform.position.x, drillUIParent.transform.position.y - 30 * goalCount, 0), Quaternion.identity);
+                    spawnDUI.transform.SetParent(drillUIParent, false);
                     break;
                 }
             case "w":
