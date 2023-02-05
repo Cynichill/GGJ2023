@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject resourceNode;
     [SerializeField] private GameObject rootOrigin;
     [SerializeField] private GameObject drillUIPrefab;
+    private GameObject cam;
     public string tileType;
 
     /*
@@ -29,6 +30,11 @@ public class Tile : MonoBehaviour
     g - Errol Node
     */
     private bool occupied = false;
+
+    public void GrabCam(GameObject camRef)
+    {
+        cam = camRef;
+    }
 
     public void SetTileType(string changeToType, int goalCount)
     {
@@ -70,8 +76,6 @@ public class Tile : MonoBehaviour
                     tileBox.enabled = false;
                     occupied = true;
 
-                    var spawnRoot = Instantiate(rootOrigin, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
-
                     break;
                 }
 
@@ -81,8 +85,10 @@ public class Tile : MonoBehaviour
                     _rend.color = Color.red;
                     tileBox.enabled = false;
                     occupied = true;
+                    var player = GameObject.FindGameObjectWithTag("Player");
 
-                    GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    player.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    cam.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
                     break;
                 }
             case "a":
@@ -170,6 +176,11 @@ public class Tile : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    public void RespawnRoot()
+    {
+        var spawnRoot = Instantiate(rootOrigin, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
     }
 
     public void Init(bool isOffset)

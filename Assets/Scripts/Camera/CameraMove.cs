@@ -29,6 +29,7 @@ public class CameraMove : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        TeleToPlayer();
        // gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
       //  minPosition = gm.minPosition;
        // maxPosition = gm.maxPosition;
@@ -159,5 +160,10 @@ public class CameraMove : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         respawnFix = false;
+    }
+
+    public void TeleToPlayer()
+    {
+        transform.position = new Vector3(target.transform.position.x, target.transform.position.y, -10);
     }
 }

@@ -8,7 +8,7 @@ public class DrillHealth : MonoBehaviour
     [SerializeField] private int health = 50;
 
     private GameObject drillUIPrefab;
-    [SerializeField] private RectTransform drillUIParent;
+    private RectTransform drillUIParent;
     private Slider slider;
 
     private void OnCollisionEnter2D(Collision2D other)

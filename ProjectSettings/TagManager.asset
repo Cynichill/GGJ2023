@@ -9,6 +9,7 @@ TagManager:
   - DrillUITag
   - GridManager
   - TimerUI
+  - emm
   layers:
   - Default
   - TransparentFX

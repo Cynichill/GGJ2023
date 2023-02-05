@@ -7,7 +7,9 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int gridSizeX;
     [SerializeField] private int gridSizeY;
     [SerializeField] private Tile tilePrefab;
+    private ExternalMapManager emm;
     private int goalCount;
+    [SerializeField] private GameObject cam;
 
     string[] mapData = new string[]
 {
@@ -18,9 +20,11 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        emm = GameObject.FindGameObjectWithTag("emm").GetComponent<ExternalMapManager>();
         gridSizeX = mapData[0].ToCharArray().Length;
         gridSizeY = mapData.Length;
         GenerateGrid();
+        emm.GetTiles();
     }
 
     private void GenerateGrid()
@@ -46,7 +50,11 @@ public class GridManager : MonoBehaviour
         var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y, 0), Quaternion.identity);
         spawnedTile.transform.parent = this.transform;
         spawnedTile.name = $"Tile {x} {y}";
-
+        if(tileType == "v")
+        {
+            spawnedTile.GrabCam(cam);
+            emm.GetSpawn(spawnedTile.transform);
+        }
         spawnedTile.SetTileType(tileType, goalCount);
 
         //Set alternating colours for tiles

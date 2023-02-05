@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4107998332669270995}
   m_Layer: 0
   m_Name: Tile
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,6 @@ MonoBehaviour:
   resourceNode: {fileID: 7230940879844196804, guid: 50bee2d4a10097246ab21a7f6f5e680c, type: 3}
   rootOrigin: {fileID: 5850660762545058706, guid: 9222d43e879ef40cba101a6566d8d0a6, type: 3}
   drillUIPrefab: {fileID: 733604367945214570, guid: 1b734625096a7544488cb132044b6269, type: 3}
-  drillUIParent: {fileID: 0}
   tileType: 0
 --- !u!61 &4107998332669270995
 BoxCollider2D:

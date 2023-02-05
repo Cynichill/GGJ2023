@@ -303,4 +303,14 @@ public class PlayerManager : MonoBehaviour
     {
         controls.Disable();
     }
+
+    public void DisableControls()
+    {
+        controls.Disable();
+    }
+
+    public void EnableControls()
+    {
+        controls.Enable();
+    }
 }

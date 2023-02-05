@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5850660762545058707}
   m_Layer: 0
   m_Name: RootOrigin
-  m_TagString: Untagged
+  m_TagString: RootOrigin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,4 +44,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootPrefab: {fileID: 3443904181631719297, guid: c8ed43cd43f5443dea63bdec2290099b, type: 3}
-  roots: []
