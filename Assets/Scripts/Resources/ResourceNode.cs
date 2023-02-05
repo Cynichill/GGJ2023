@@ -23,6 +23,11 @@ public class ResourceNode : MonoBehaviour
         rend.sprite = sprites[type];
     }
 
+    public void Chop()
+    {
+        TakeDamage(10);
+    }
+
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -30,6 +35,8 @@ public class ResourceNode : MonoBehaviour
         {
             GiveResources();
         }
+
+        Destroy(this.gameObject);
     }
 
     private void GiveResources()
