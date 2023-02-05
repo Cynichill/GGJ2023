@@ -39,13 +39,11 @@ public class PlayerManager : MonoBehaviour
     //Data trackers
     private bool enabled = true; //Selectivley enables and disables the player in update.
 
-    private bool facingLeft
+    public Vector2 currentMovement
     {
         get
         {
-            //true is "yes, i am facing left".
-            //False is "no".
-            return playerState.GetMoveDirection();
+            return GetPlayerMovement();
         }
     }
 
@@ -82,14 +80,13 @@ public class PlayerManager : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
+    private Vector2 GetPlayerMovement()
+    {
+        return playerState.GetMoveDirection();
+    }
     //methods
 
     //Public
-
-    public bool IsFacingLeft()
-    {
-        return facingLeft;
-    }
 
     public void HandlePlayerActions()
     {

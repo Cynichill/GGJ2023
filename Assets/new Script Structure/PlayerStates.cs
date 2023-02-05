@@ -51,8 +51,8 @@ public abstract class PlayerStates
         playerObj = obj;
     }
 
-    public virtual bool GetMoveDirection()
+    public virtual Vector2 GetMoveDirection()
     {
-        return true;
+        return new Vector2();
     }
 }
