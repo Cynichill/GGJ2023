@@ -5,39 +5,37 @@ using TMPro;
 
 public class WaveTimer : MonoBehaviour
 {
-    public float currentTime = 0f;
     private int textTime;
-    private GameManager gm;
-
-    private bool gameEnded = false;
+    private bool waveEnded = false;
     public TMPro.TMP_Text text;
-
-    private void Awake()
-    {
-        gm = GameObject.FindGameObjectWithTag("gm").GetComponent<GameManager>();
-    }
+    private float waveTime = 60;
 
     private void Update()
     {
-        currentTime -= 1 * Time.deltaTime;
+        waveTime -= 1 * Time.deltaTime;
 
-        if (currentTime <= 0)
+        if (waveTime <= 0)
         {
-            currentTime = 0;
-            if (!gameEnded)
+            waveTime = 0;
+            if (!waveEnded)
             {
                 text.text = "Wave End!";
-                gameEnded = true;
-                //gm.EndGame();
+                waveEnded = true;
             }
         }
 
-        if (!gameEnded)
+        if (!waveEnded)
         {
-            textTime = (int)currentTime;
+            textTime = (int)waveTime;
             text.text = textTime.ToString();
         }
 
+    }
+
+    public void StartWave()
+    {
+        waveEnded = false;
+        waveTime = 60;
     }
 
 }
