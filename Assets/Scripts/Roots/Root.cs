@@ -76,12 +76,12 @@ public class Root : Enemy, IChoppable, IBurnable
                     //DoesBranch();   // grow additional path
                 } 
 
-                if(count == 8){
-                    Vector2 B = new Vector2(-3.99f, 1.01f);
-                    Vector2 A = new Vector2(-2.99f, 2.01f);
-                    Chop((A+B)/2);
-                    count++;
-                }
+                // if(count == 8){
+                //     Vector2 B = new Vector2(-3.99f, 1.01f);
+                //     Vector2 A = new Vector2(-2.99f, 2.01f);
+                //     Chop((A+B)/2);
+                //     count++;
+                // }
 
                 //  Debug.Log(positions.Count);
             }
@@ -220,10 +220,10 @@ public class Root : Enemy, IChoppable, IBurnable
         return !Physics2D.Linecast(newPoint, pointA);
     } 
 
-    void Chop(Vector2 hitPoint) {
+    public void Chop(Vector2 hitPoint) {
         Debug.Log("chop!");
         Vector3 hit = hitPoint;
-        hit = hit + new Vector3(0,0,-1);
+        hit = hit + new Vector3(0,0,-2);
         Debug.Log(hit);
 
         Vector3 pointA = new Vector3(0,0,0);
@@ -231,12 +231,19 @@ public class Root : Enemy, IChoppable, IBurnable
         bool found = false;
 
         for(int i = 1; i < positions.Count; i++){
-            //Debug.Log(i);
+            Debug.Log(i);
             pointA = positions.ElementAt(i-1);
             pointB = positions.ElementAt(i);
             //Debug.Log(pointA + " : " + pointB);
-            if(Vector3.Distance(pointA,hit) + Vector3.Distance(hit, pointB) 
-                == Vector3.Distance(pointA, pointB)){
+            float d1 = Vector3.Distance(pointA,hit);
+            float d2 = Vector3.Distance(hit, pointB);
+            float sum = d1+d2;
+            float length = Vector3.Distance(pointA, pointB);
+            Debug.Log("d1: " + d1);
+            Debug.Log("d2: " + d2);
+            Debug.Log("Sum: " + sum);
+            Debug.Log("Length: " + length);
+            if(sum == length){
                     Debug.Log("found");
                     split(pointA,pointB);
                     break;

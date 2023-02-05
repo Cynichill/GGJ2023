@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  rootPrefab: {fileID: 3443904181631719297}
+  mutationRate: 0
   children: []
   positions: []
   start: {x: 0, y: 0, z: 0}
@@ -164,7 +164,7 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.05
+  m_EdgeRadius: 0
   m_Points:
   - {x: -0.5, y: 0}
   - {x: 0.5, y: 0}
