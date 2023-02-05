@@ -21,7 +21,7 @@ public class ShakeObj : MonoBehaviour
     {
         if (shake)
         {
-            transform.position = new Vector3(transform.position.x + Mathf.Sin(Time.time * speed) * amount, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x , transform.position.y + Mathf.Sin(Time.time * speed) * amount, transform.position.z);
         }
     }
 

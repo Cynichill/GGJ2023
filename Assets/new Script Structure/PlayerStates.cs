@@ -13,7 +13,7 @@ public abstract class PlayerStates
         
     }
 
-    protected virtual void ActionSecondary()
+    public virtual void ActionSecondary()
     {
     
     }

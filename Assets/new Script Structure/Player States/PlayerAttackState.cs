@@ -5,13 +5,14 @@ public class PlayerAttackState : PlayerStates
 {
 
     private bool m_FacingRight;
-    private float moveSpeed = 5;
+    private float moveSpeed = 10;
     private Rigidbody2D rb;
 
     private Vector2 moveThisFrame = Vector2.zero;
 
     //Set active item to axe initially
     private Item item = new ItemAxe();
+    private Item secondaryItem = new ItemFlamethrower();
 
     public override void Initiate(PlayerManager playerRef, GameObject obj)
     {
@@ -26,6 +27,13 @@ public class PlayerAttackState : PlayerStates
 
         //Check in facing direction for enemy. If enemy found (vine), chop / burn
         item.Use();
+    }
+
+    public override void ActionSecondary()
+    {
+        base.ActionSecondary();
+
+        secondaryItem.Use();
     }
 
     public override void HandleMoveInput(Vector2 movement)
@@ -60,14 +68,6 @@ public class PlayerAttackState : PlayerStates
         {
             moveThisFrame.x = 0;
         }
-    }
-
-    //Swaps the currently in use item with the item that should be used
-    public override void Swap(Item newItem)
-    {
-        item.Swap();
-        item = newItem;
-        item.Initialise();
     }
 
     public override void Move()
