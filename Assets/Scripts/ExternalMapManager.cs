@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class ExternalMapManager : MonoBehaviour
 {
     private GameStateManager gst;
@@ -83,5 +84,16 @@ public class ExternalMapManager : MonoBehaviour
         {
             drills.Add(drill);
         }
+    }
+
+    public void EndGame()
+    {
+        StartCoroutine(EndGameTime());
+    }
+
+    private IEnumerator EndGameTime()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(0);
     }
 }

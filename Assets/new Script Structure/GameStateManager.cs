@@ -22,8 +22,8 @@ public class GameStateManager : MonoBehaviour
 
     private int wave = 1; //How many waves have passed
     private int maxWaves = 5; //Max number of waves
-    private float timer = 30f;
-    private float timePerWave = 30f; //in seconds
+    private float timer = 60f;
+    private float timePerWave = 60f; //in seconds
 
     //Timer variables
 
@@ -31,6 +31,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text timerText;
     [SerializeField] private TMPro.TMP_Text maxWaveText;
     [SerializeField] private TMPro.TMP_Text curWaveText;
+    [SerializeField] private TMPro.TMP_Text WinLoseText;
 
 
     private void Start()
@@ -98,6 +99,15 @@ public class GameStateManager : MonoBehaviour
 
     public void DoVictoryCondition()
     {
+        WinLoseText.gameObject.SetActive(true);
+        WinLoseText.text = "YOU ARE WINNER!";
+        emm.EndGame();
+    }
 
+    public void DoLossCondition()
+    {
+        WinLoseText.gameObject.SetActive(true);
+        WinLoseText.text = "YOU LOSE..";
+        emm.EndGame();
     }
 }

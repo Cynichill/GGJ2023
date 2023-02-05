@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class DrillHealth : MonoBehaviour
 {
     [SerializeField] private int health = 50;
-
     private GameObject drillUIPrefab;
     private RectTransform drillUIParent;
     private Slider slider;
@@ -37,7 +36,7 @@ public class DrillHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("Drill broken!");
+            GameObject.FindGameObjectWithTag("GM").GetComponent<GameStateManager>().DoLossCondition();
         }
     }
 }
