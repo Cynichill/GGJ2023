@@ -60,7 +60,13 @@ public class PlayerAttackState : PlayerStates
 
     public override Vector2 GetMoveDirection()
     {
-        return moveThisFrame;
+        if (moveThisFrame == Vector2.zero)
+        {
+            return player.currentMovement;
+        } else
+        {
+            return moveThisFrame;
+        }
     }
 
     public override void HandleMoveInput(Vector2 movement)

@@ -24,7 +24,7 @@ public class ItemAxe : Item
         base.Use(usingPlayer);
         
         //Casts rays left or right dependant on wether or not 
-        Ray2D hitRay = new Ray2D(usingPlayer.GetGameObject().transform.position, usingPlayer.currentMovement);
+        Ray2D hitRay = new Ray2D(usingPlayer.GetGameObject().transform.position, usingPlayer.GetMovement());
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(hitRay.origin, hitRay.direction);
         Debug.DrawRay(hitRay.origin, hitRay.direction, Color.blue, 10000.0f, false);

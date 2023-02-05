@@ -50,16 +50,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text GoldText;
     [SerializeField] private TMPro.TMP_Text ErrolText;
 
-    public Vector2 currentMovement
-    {
-        get
-        {
-            //true is "yes, i am facing left".
-            //False is "no".
-            return playerState.GetMoveDirection();
-        }
-    }
-
+    public Vector2 currentMovement = Vector2.zero;
+    
     //Reference to active player state
     private PlayerStates playerState;
 
@@ -93,14 +85,15 @@ public class PlayerManager : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
+    public Vector2 GetMovement()
+    {
+        currentMovement = playerState.GetMoveDirection();
+        return currentMovement;
+    }
+
     //methods
 
     //Public
-
-    public Vector2 IsFacingLeft()
-    {
-        return currentMovement;
-    }
 
     public void HandlePlayerActions()
     {
