@@ -55,7 +55,7 @@ public class Root : Enemy, IChoppable, IBurnable
     // draw path
     public void Draw() {
         lines.positionCount = positions.Count;
-        Debug.Log(lines.positionCount);
+        //Debug.Log(lines.positionCount);
         lines.SetPositions(positions.ToArray());
         SetEdgeCollider();
     }
@@ -83,7 +83,7 @@ public class Root : Enemy, IChoppable, IBurnable
                     count++;
                 }
 
-                Debug.Log(positions.Count);
+                //  Debug.Log(positions.Count);
             }
     }
 
@@ -110,7 +110,7 @@ public class Root : Enemy, IChoppable, IBurnable
                 positions.Add(newPoint);
                 Draw(); 
             } */
-            positions.Add(positions.Last() + new Vector3(-1,-1,0));
+            positions.Add(positions.Last() + new Vector3(1,1,0));
             Draw();
         } else {
             growing = false;  
@@ -231,10 +231,10 @@ public class Root : Enemy, IChoppable, IBurnable
         bool found = false;
 
         for(int i = 1; i < positions.Count; i++){
-            Debug.Log(i);
+            //Debug.Log(i);
             pointA = positions.ElementAt(i-1);
             pointB = positions.ElementAt(i);
-            Debug.Log(pointA + " : " + pointB);
+            //Debug.Log(pointA + " : " + pointB);
             if(Vector3.Distance(pointA,hit) + Vector3.Distance(hit, pointB) 
                 == Vector3.Distance(pointA, pointB)){
                     Debug.Log("found");
@@ -251,7 +251,7 @@ public class Root : Enemy, IChoppable, IBurnable
 
         int i = positions.IndexOf(A);
         int end = positions.Count-i;
-        Debug.Log(i + " : " + end);
+        //Debug.Log(i + " : " + end);
 
         SpawnChild(B, transform.parent).SetPositions(positions.GetRange(i,end));
         positions.RemoveRange(i, end);
