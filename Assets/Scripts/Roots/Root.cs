@@ -73,7 +73,7 @@ public class Root : Enemy, IChoppable, IBurnable
                     Extend();
                 };   // grow this path
                 if(count < 2 && branchSpace >= 5){
-                    //DoesBranch();   // grow additional path
+                    DoesBranch();   // grow additional path
                 } 
 
                 // if(count == 8){
@@ -93,7 +93,7 @@ public class Root : Enemy, IChoppable, IBurnable
         float distance = Vector3.Distance(positions.Last(), goal);
         //Debug.Log(distance);
         if(distance > 1.5f){
-            /*Vector3 newPoint = new Vector3(0,0,0);
+            Vector3 newPoint = new Vector3(0,0,0);
 
             bool create = false;
             int attempt = 0;
@@ -109,7 +109,7 @@ public class Root : Enemy, IChoppable, IBurnable
             if(create){ 
                 positions.Add(newPoint);
                 Draw(); 
-            } */
+            }
             positions.Add(positions.Last() + new Vector3(1,1,0));
             Draw();
         } else {
