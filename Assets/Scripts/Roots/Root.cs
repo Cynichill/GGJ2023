@@ -270,6 +270,12 @@ public class Root : Enemy, IChoppable, IBurnable
 
     public void Chop(Vector2 hitPoint)
     {
+        
+        //Im sorry little one
+        //I need to HEAVILY fuck with this
+        //-Fio
+
+
         Debug.Log("chop!");
         Vector3 hit = hitPoint;
         hit = hit + new Vector3(0, 0, -2);
@@ -295,12 +301,23 @@ public class Root : Enemy, IChoppable, IBurnable
             Debug.Log("Length: " + length);
             if (sum == length)
             {
+                for (int k = i; k < positions.Count; k++)
+                {
+                    positions.RemoveAt(k);
+                    split(pointA, pointB);
+                    GetNewPosition();
+                }
+
+                //Im sorry little one
+                /*
                 Debug.Log("found");
                 split(pointA, pointB);
                 break;
+                */
             }
         }
         Debug.Log("done");
+        
     }
 
     void split(Vector3 A, Vector3 B)
@@ -312,7 +329,7 @@ public class Root : Enemy, IChoppable, IBurnable
         int end = positions.Count - i;
         //Debug.Log(i + " : " + end);
 
-        SpawnChild(B, transform.parent).SetPositions(positions.GetRange(i, end));
+        //SpawnChild(B, transform.parent).SetPositions(positions.GetRange(i, end));
         positions.RemoveRange(i, end);
         Draw();
     }

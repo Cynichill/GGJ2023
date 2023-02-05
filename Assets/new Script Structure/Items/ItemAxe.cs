@@ -31,6 +31,12 @@ public class ItemAxe : Item
 
         foreach (RaycastHit2D hit in hits)
         {
+            //Guard clause against object out of range
+            if (hit.distance > 3f)
+            {
+                continue;
+            }
+            
             //Guard clause against not choppable
             if (hit.collider.gameObject.GetComponent<IChoppable>() != null)
             {
