@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Root : Enemy, IChoppable, IBurnable
 {
-    public Root parent;
     private LineRenderer lines;
     private GameObject rootPrefab;
     public float mutationRate;
@@ -275,12 +274,13 @@ public class Root : Enemy, IChoppable, IBurnable
         //I need to HEAVILY fuck with this
         //-Fio
 
+        
 
         FindObjectOfType<AudioManager>().Play("RootHurt");
         Debug.Log("chop!");
         Vector3 hit = hitPoint;
         hit = hit + new Vector3(0, 0, -2);
-        Debug.Log(hit);
+        Debug.Log("hit: " + hit);
 
         Vector3 pointA = new Vector3(0, 0, 0);
         Vector3 pointB = new Vector3(0, 0, 0);
@@ -302,12 +302,24 @@ public class Root : Enemy, IChoppable, IBurnable
             Debug.Log("Length: " + length);
             if (sum == length)
             {
+                SpawnChild(positions.First(), transform.parent);
+                GameObject.Destroy(this.gameObject);
+
+                //positions.RemoveAt(1);
+                //split(positions.ElementAt(1), positions.ElementAt(2));
+                //GetNewPosition();
+
+                /* Uncomment this code for 
+                 * roots that work by 
+                 * re-growing from cut point
+                 * 
                 for (int k = i; k < positions.Count; k++)
                 {
                     positions.RemoveAt(k);
                     split(pointA, pointB);
                     GetNewPosition();
                 }
+                */
 
                 //Im sorry little one
                 /*
