@@ -1459,14 +1459,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WoodText: {fileID: 1144123297}
-  StoneText: {fileID: 0}
-  RubyText: {fileID: 0}
-  DiamondText: {fileID: 0}
-  SapphireText: {fileID: 0}
-  AmethystText: {fileID: 0}
-  PearlText: {fileID: 0}
-  GoldText: {fileID: 0}
-  ErrolText: {fileID: 0}
+  StoneText: {fileID: 591186101}
+  RubyText: {fileID: 1092290219}
+  DiamondText: {fileID: 118388734}
+  SapphireText: {fileID: 1258747219}
+  AmethystText: {fileID: 972637462}
+  PearlText: {fileID: 842231036}
+  GoldText: {fileID: 677495945}
+  ErrolText: {fileID: 926126410}
   playerObj: {fileID: 0}
 --- !u!114 &772522113
 MonoBehaviour:
