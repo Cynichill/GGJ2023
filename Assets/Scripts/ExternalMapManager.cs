@@ -11,6 +11,7 @@ public class ExternalMapManager : MonoBehaviour
     [SerializeField] private GameObject butt;
     private Transform spawnTile;
     private List<Tile> rootTiles = new List<Tile>();
+    private List<GameObject> drills = new List<GameObject>();
 
     private void Start()
     {
@@ -28,9 +29,11 @@ public class ExternalMapManager : MonoBehaviour
         butt.SetActive(false);
         playerMan.EnableControls();
 
+        System.Random randomSeed = new System.Random(Time.time.ToString().GetHashCode());
+
         foreach (Tile tile in rootTiles)
         {
-            tile.RespawnRoot();
+            tile.RespawnRoot(drills);
         }
     }
 
@@ -72,6 +75,13 @@ public class ExternalMapManager : MonoBehaviour
             {
                 rootTiles.Add(tile.GetComponent<Tile>());
             }
+        }
+
+        GameObject[] drillList = GameObject.FindGameObjectsWithTag("Drill");
+
+        foreach(GameObject drill in drillList)
+        {
+            drills.Add(drill);
         }
     }
 }

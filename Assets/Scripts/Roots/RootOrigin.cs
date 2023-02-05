@@ -5,14 +5,16 @@ using UnityEngine;
 public class RootOrigin : MonoBehaviour
 {
     public GameObject rootPrefab;
-    private Vector3[] goals = {new Vector3(5, -4, 0), new Vector3(-5, -4, 0), new Vector3(5, 4, 0), new Vector3(-5, 4, 0)};
 
     // Start is called before the first frame update
-    void Start()
+    public void Initialize(List<GameObject> goals)
     {
+        int index = Random.Range(0, goals.Count);
+        Vector3 goalVector = new Vector3(goals[index].transform.position.x, goals[index].transform.position.y, -2);
+        
         GameObject newRootRef = Instantiate(rootPrefab, new Vector3(0,0,0), transform.rotation, transform);
         Root newRoot = newRootRef.GetComponent<Root>();
-        newRoot.Initialize(transform.position, 0.6f, goals[Random.Range(0,3)], rootPrefab);
+        newRoot.Initialize(transform.position, 0.6f, goalVector, rootPrefab, goals[index].GetComponent<DrillHealth>());
     }
 
     // Update is called once per frame

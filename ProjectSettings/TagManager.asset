@@ -10,6 +10,9 @@ TagManager:
   - GridManager
   - TimerUI
   - emm
+  - RootOrigin
+  - Tile
+  - Drill
   layers:
   - Default
   - TransparentFX
@@ -19,8 +22,8 @@ TagManager:
   - UI
   - Player
   - System
-  - 
-  - 
+  - Root
+  - Object
   - 
   - 
   - 

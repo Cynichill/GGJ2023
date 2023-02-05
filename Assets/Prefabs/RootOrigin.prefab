@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5850660762545058716}
   - component: {fileID: 5850660762545058707}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RootOrigin
   m_TagString: RootOrigin
   m_Icon: {fileID: 0}

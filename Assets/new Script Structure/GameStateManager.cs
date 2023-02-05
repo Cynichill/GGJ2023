@@ -22,8 +22,8 @@ public class GameStateManager : MonoBehaviour
 
     private int wave = 1; //How many waves have passed
     private int maxWaves = 5; //Max number of waves
-    private float timer = 5f;
-    private float timePerWave = 5f; //in seconds
+    private float timer = 30f;
+    private float timePerWave = 30f; //in seconds
 
     //Timer variables
 

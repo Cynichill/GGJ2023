@@ -178,9 +178,10 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void RespawnRoot()
+    public void RespawnRoot(List<GameObject> drills)
     {
         var spawnRoot = Instantiate(rootOrigin, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+        spawnRoot.GetComponent<RootOrigin>().Initialize(drills);
     }
 
     public void Init(bool isOffset)

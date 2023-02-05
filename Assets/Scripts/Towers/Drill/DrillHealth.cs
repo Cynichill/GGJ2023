@@ -30,7 +30,7 @@ public class DrillHealth : MonoBehaviour
         slider = spawnDUI.GetComponentInChildren<Slider>();
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
         slider.value = health;
